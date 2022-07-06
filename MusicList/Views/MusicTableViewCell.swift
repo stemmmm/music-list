@@ -49,6 +49,7 @@ final class MusicTableViewCell: UITableViewCell {
     let albumNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 2
         return label
     }()
     

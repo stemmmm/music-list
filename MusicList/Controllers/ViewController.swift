@@ -7,11 +7,6 @@
 
 import UIKit
 
-// TODO: 아래 검게 나오는거 해결
-// TODO: 네비게이션 바 타이틀 크게 보이게
-// TODO: 셀 스택 뷰 세번째 레이블 길어지면 짤리는거 해결
-// TODO: 코드 복습
-
 final class ViewController: UIViewController {
 
     private let tableView = UITableView()
@@ -32,6 +27,7 @@ final class ViewController: UIViewController {
     // 네비게이션 바 설정
     func setNavBar() {
         title = "노래 목록"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -58,10 +54,10 @@ final class ViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
     
