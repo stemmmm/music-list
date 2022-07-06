@@ -16,6 +16,7 @@
 		7B76CB962874708F002F6AFA /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76CB952874708F002F6AFA /* Music.swift */; };
 		7B76CB982874727E002F6AFA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76CB972874727E002F6AFA /* NetworkManager.swift */; };
 		7B76CB9B2874738B002F6AFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76CB9A2874738B002F6AFA /* Constants.swift */; };
+		7B76CB9D28753512002F6AFA /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76CB9C28753512002F6AFA /* MusicTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7B76CB952874708F002F6AFA /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		7B76CB972874727E002F6AFA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7B76CB9A2874738B002F6AFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7B76CB9C28753512002F6AFA /* MusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				7B76CB8428746C53002F6AFA /* Main.storyboard */,
+				7B76CB9C28753512002F6AFA /* MusicTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				7B76CB7F28746C53002F6AFA /* AppDelegate.swift in Sources */,
 				7B76CB8128746C53002F6AFA /* SceneDelegate.swift in Sources */,
 				7B76CB982874727E002F6AFA /* NetworkManager.swift in Sources */,
+				7B76CB9D28753512002F6AFA /* MusicTableViewCell.swift in Sources */,
 				7B76CB962874708F002F6AFA /* Music.swift in Sources */,
 				7B76CB9B2874738B002F6AFA /* Constants.swift in Sources */,
 			);

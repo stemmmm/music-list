@@ -18,7 +18,7 @@ struct Music: Codable {
     let albumName: String?
     let previewUrl: String?
     let imageUrl: String?
-    private let releaseDate: String?
+    let releaseDate: String?
     
     enum CodingKeys: String, CodingKey {
         case songName = "trackName"

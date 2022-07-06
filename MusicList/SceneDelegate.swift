@@ -11,12 +11,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    // ⭐️ 첫 화면 뜨기 전 네이게이션 바 내장
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windonScene = (scene as? UIWindowScene) else {return}
+        
+        window = UIWindow(windowScene: windonScene) // or window?.windowScene = windonScene
+        
+        let rootVC = ViewController()
+        
+        // 첫번째 화면을 네비게이션 컨트롤러로 만들기(루트뷰 설정)
+        let navVC = UINavigationController(rootViewController: rootVC)
+        
+        // ⭐️ 루트뷰를 네비게이션 컨트롤러로 설정
+        window?.rootViewController = navVC
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -26,7 +26,7 @@ final class NetworkManager {
     // Result 타입 너무 길어서 typealias 설정
     typealias NetworkCompletion = (Result<[Music], NetworkError>) -> Void
 
-    // 네트워킹 요청하는 함수 - (Constants.swift 파일에 문자열 public enum으로 따로 정의)
+    // URL을 만드는 함수 (Constants.swift 파일에 문자열 public enum으로 따로 정의)
     // 뷰컨에서 사용해야하기 때문에 private으로 선언 X
     func fetchMusic(searchTerm: String, completion: @escaping NetworkCompletion) {
         let urlString = "\(MusicApi.requestUrl)\(MusicApi.mediaParam)&term=\(searchTerm)"
@@ -38,7 +38,7 @@ final class NetworkManager {
         
     }
     
-    // 실제 request 하는 함수(비동기적 실행: 클로저 방식으로 끝난 시점을 전달 받도록 설계)
+    // 요청(request) 하는 함수 (비동기적 실행: 클로저 방식으로 끝났을때의 시점을 전달 받음)
     private func performRequest(with urlString: String, completion: @escaping NetworkCompletion) {
         // print(#function)
 
@@ -74,7 +74,7 @@ final class NetworkManager {
         task.resume()
     }
     
-    // 받은 데이터 분석하는 함수(동기적 실행)
+    // 받은 데이터 parse 하는 함수 (동기적 실행)
     private func parseJSON(_ musicData: Data) -> [Music]? {
         //print(#function)
     
