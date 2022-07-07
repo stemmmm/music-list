@@ -26,45 +26,44 @@ final class MusicTableViewCell: UITableViewCell {
         }
     }
     
-    let mainImageView: UIImageView = {
+    private let mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 6
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let songNameLabel: UILabel = {
+    private let songNameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
     
-    let artistNameLabel: UILabel = {
+    private let artistNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .darkGray
         return label
     }()
     
-    let albumNameLabel: UILabel = {
+    private let albumNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.numberOfLines = 2
         return label
     }()
     
-    let releaseDateLabel: UILabel = {
+    private let releaseDateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 10)
         return label
     }()
     
-    lazy var labelStackView: UIStackView = {
+    private lazy var labelStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [songNameLabel, artistNameLabel, albumNameLabel, releaseDateLabel])
         stackView.axis = .vertical
-        stackView.distribution  = .fill
+        stackView.distribution  = .fillEqually
         stackView.alignment = .leading
-        stackView.spacing = 6
         return stackView
     }()
     
@@ -80,7 +79,7 @@ final class MusicTableViewCell: UITableViewCell {
     }
     
     // 뷰, 스택 뷰로 구성된 셀
-    func setStackView() {
+    private func setStackView() {
         // 셀 위에 뷰 올리기
         self.addSubview(mainImageView)
             
@@ -96,31 +95,31 @@ final class MusicTableViewCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         setMainImageViewConstraints()
         setLabelStackViewConstraints()
     }
     
-    func setMainImageViewConstraints() {
+    private func setMainImageViewConstraints() {
         mainImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mainImageView.widthAnchor.constraint(equalToConstant: 100),
-            mainImageView.heightAnchor.constraint(equalToConstant: 100),
+            mainImageView.widthAnchor.constraint(equalToConstant: 140),
+            mainImageView.heightAnchor.constraint(equalToConstant: 140),
             mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             mainImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
         
     }
     
-    func setLabelStackViewConstraints() {
+    private func setLabelStackViewConstraints() {
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             labelStackView.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: 20),
             labelStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            labelStackView.topAnchor.constraint(equalTo: self.mainImageView.topAnchor),
-            labelStackView.bottomAnchor.constraint(equalTo: self.mainImageView.bottomAnchor)
+            labelStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            labelStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
         ])
     }
     

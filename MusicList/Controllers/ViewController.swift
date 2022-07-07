@@ -8,24 +8,28 @@
 import UIKit
 
 final class ViewController: UIViewController {
-
+    
+    private var networkManager = NetworkManager.shared
+    
+    private var musicArray: [Music] = []
+    
     private let tableView = UITableView()
     
-    var networkManager = NetworkManager.shared
-    
-    var musicArray: [Music] = []
+    private let searchController = UISearchController(searchResultsController: SearchResultViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavBar()
+        setSearchBar()
         setTableView()
         setTableViewConstraints()
+        
         setDatas()
     }
     
     // 네비게이션 바 설정
-    func setNavBar() {
+    private func setNavBar() {
         title = "노래 목록"
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -37,9 +41,18 @@ final class ViewController: UIViewController {
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
+    
+    // 서치바 세팅
+    private func setSearchBar() {
+        navigationItem.searchController = searchController
+        
+        searchController.searchResultsUpdater = self
+        
+        searchController.searchBar.autocapitalizationType = .none
+    }
 
     // 테이블 뷰 설정
-    func setTableView() {
+    private func setTableView() {
         // 델리게이트 패턴의 대리자 설정
         tableView.dataSource = self
         tableView.delegate = self
@@ -49,20 +62,20 @@ final class ViewController: UIViewController {
     }
     
     // 테이블 뷰의 오토레이아웃 설정
-    func setTableViewConstraints() {
+    private func setTableViewConstraints() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
     // 데이터 세팅
-    func setDatas() {
+    private func setDatas() {
         // 네트워킹의 시작
         networkManager.fetchMusic(searchTerm: "jazz") { result in
             // print(#function)
@@ -110,11 +123,28 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 160
     }
     
 //    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return UITableView.automaticDimension
 //    }
     
+}
+
+// MARK: - 검색하는 동안 (새로운 화면을 보여주는) 복잡한 내용 구현 가능
+
+extension ViewController: UISearchResultsUpdating {
+
+    // 유저가 글자를 입력하는 순간마다 호출되는 메서드(일반적으로 다른 화면을 보여줄때 구현)
+    func updateSearchResults(for searchController: UISearchController) {
+        print("서치바에 입력되는 단어", searchController.searchBar.text ?? "")
+
+        // 글자를 치는 순간에 다른 화면을 보여주고 싶다면 (컬렉션뷰를 보여줌)
+        let vc = searchController.searchResultsController as! SearchResultViewController
+
+        // 컬렉션뷰에 찾으려는 단어 전달
+        vc.searchTerm = searchController.searchBar.text ?? ""
+    }
+
 }

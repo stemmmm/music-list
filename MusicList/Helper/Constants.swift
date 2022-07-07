@@ -18,3 +18,10 @@ public struct Cell {
     static let musicCollectionViewCellIdentifier = "MusicCollectionViewCell"
     private init() {}
 }
+
+// 컬렉션뷰 구성을 위한 설정
+public struct CVCell {
+    static let spacingWitdh: CGFloat = 1
+    static let cellColumns: CGFloat = 3
+    private init() {}
+}
