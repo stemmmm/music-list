@@ -9,11 +9,7 @@ import UIKit
 
 final class MusicCollectionViewCell: UICollectionViewCell {
     
-    private var mainImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.sizeToFit()
-        return imageView
-    }()
+    private var mainImageView = UIImageView()
     
     // 이미지 URL을 전달받는 속성
     var imageUrl: String? {
@@ -37,18 +33,20 @@ final class MusicCollectionViewCell: UICollectionViewCell {
         mainImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mainImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            mainImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            mainImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            mainImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            mainImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
     
     // URL -> 이미지를 세팅하는 메서드
     private func loadImage() {
-        guard let urlString = imageUrl, let url = URL(string: urlString)  else { return }
+        guard let urlString = imageUrl, let url = URL(string: urlString) else { return }
         
         // 비동기 처리
         DispatchQueue.global().async {
-            // URL을 가지고 데이터를 만드는 메서드 (오래걸리는데 동기적인 실행)
+            // URL을 가지고 데이터를 만드는 메서드 (동기적인 실행)
             guard let data = try? Data(contentsOf: url) else { return }
             
             // ⭐️ 오래걸리는 작업이 일어나고 있는 동안에 url이 바뀔 가능성 제거
@@ -66,7 +64,7 @@ final class MusicCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         // ⭐️ 일반적으로 이미지가 바뀌는 것처럼 보이는 현상을 없애기 위해서 실행
-        self.mainImageView.image = nil
+        mainImageView.image = nil
     }
     
 }

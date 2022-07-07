@@ -133,7 +133,6 @@ extension ViewController: UITableViewDelegate {
 }
 
 // MARK: - 검색하는 동안 (새로운 화면을 보여주는) 복잡한 내용 구현 가능
-
 extension ViewController: UISearchResultsUpdating {
 
     // 유저가 글자를 입력하는 순간마다 호출되는 메서드(일반적으로 다른 화면을 보여줄때 구현)

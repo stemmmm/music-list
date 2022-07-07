@@ -16,7 +16,7 @@ final class SearchResultViewController: UIViewController {
     private var musicArrays: [Music] = []
     
     // 컬렉션 뷰
-    private lazy var collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
+    private lazy var collectionView = UICollectionView(frame: view.frame, collectionViewLayout: flowLayout)
     
     // 컬렉션 뷰의 레이아웃을 담당하는 객체
     private let flowLayout = UICollectionViewFlowLayout()
@@ -53,7 +53,7 @@ final class SearchResultViewController: UIViewController {
         
         // 아이템 사이즈 구하기
         let collectionCellWidth = (UIScreen.main.bounds.width - CVCell.spacingWitdh * (CVCell.cellColumns - 1)) / CVCell.cellColumns
-        
+
         // 아이템 사이즈
         flowLayout.itemSize = CGSize(width: collectionCellWidth, height: collectionCellWidth)
         
@@ -77,8 +77,6 @@ final class SearchResultViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        
     }
     
     // 데이터 세팅
